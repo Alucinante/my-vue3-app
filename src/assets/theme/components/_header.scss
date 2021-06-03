@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--global-page-padding-m);
+    box-shadow: 0 0 8px rgba(0,0,0,.05);
+    .logo {
+        max-width: 100%;
+        flex: 1;
+        img {
+            max-height: 75px;
+        }
+    }
+}

@@ -1,5 +1,15 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <section class="section about">
+    <h1>Exercice Nº2: Task list</h1>
+    <ToDoList />
+  </section>
 </template>
+<script>
+import ToDoList from '@/components/ToDoList.vue'; // @ is an alias to /src
+export default {
+  name: 'About',
+  components: {
+    ToDoList,
+  },
+}
+</script>

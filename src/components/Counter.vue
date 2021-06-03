@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h2>Exercice Nº1: Counter</h2>
     <p>{{ count }}</p>
   <p>
     <button @click="increment">+</button>
@@ -15,7 +15,7 @@ import store from '../store'
 
 
 export default defineComponent({
-  name: 'HelloWorld',
+  name: 'Counter',
   props: {
     msg: String,
   },
@@ -26,7 +26,8 @@ export default defineComponent({
   },
   methods: {
     increment () {
-      store.commit('increment')
+      store.commit('increment');
+      console.log(store.state.count)
     },
     decrement () {
       store.commit('decrement')

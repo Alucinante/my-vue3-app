@@ -1,0 +1,48 @@
+.sidebar {
+    width: 300px;
+    overflow-x: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: inherit;
+    background: pink;
+    padding: 1.5rem;
+    transition: all 0.5s ease-in-out;
+    .sidebar-list {
+        li {
+            font-size: var(--global-l-size);
+            margin-bottom: 1rem;
+            a {
+                text-decoration: none;
+                color: fuchsia;
+                &:hover {
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+/*.slide-enter-active, .slide-leave-active {
+    transition: width 1s;
+}
+.slide-enter, .slide-leave-to{
+    width:0;
+}*/
+
+.show {
+    &-enter, &-leave-to {
+        opacity: 0;
+    }
+    &-enter-active, &-leave-active {
+        transition: all 300ms;
+    }
+}
+.fade {
+    &-enter {
+        transform: translateX(-300px);
+    }
+    &-enter-active { 
+        transition: all 300ms ease-in-out;
+    }
+}
