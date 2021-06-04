@@ -2,7 +2,7 @@
     <div class="to-do-list">
         <div class="form">
             <input type="text" class="input" v-model="task" placeholder="Add task" />
-            <button class="button-add" @click="addTask">Add Item</button>
+            <button class="button button-add" @click="addTask">Add Item</button>
         </div>
 
         <h2>To do list</h2>
@@ -14,7 +14,7 @@
             >
                 {{ task }}
 
-            <button class="button-dt" @click="deleteTask(index)">Delete Item</button>
+            <button class="button button-dt" @click="deleteTask(index)">Delete Item</button>
             </li>
         </ul>
     </div>
