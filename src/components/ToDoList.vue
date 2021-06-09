@@ -14,37 +14,38 @@
             >
                 {{ task }}
 
-            <button class="button button-dt" @click="deleteTask(index)">Delete Item</button>
+            <button class="button button-dt" @click="deleteTask(task)">Delete Item</button>
             </li>
         </ul>
     </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-//import store from '../store'
-
-
-type Task = string; // Declaro el type
-let task: Task; // A la variable le asigno el type
+import store from '../store'
 
 
 export default defineComponent({
     name: 'ToDoList',
     data: function() {
         return {
-            tasks: new Array<string>(),
             task: '',
         }
     },
     methods: {
         addTask() {
-            if (this.task.trim() != '') {
-                this.tasks.push(this.task);
+            if (this.task.trim() != '') { 
+                store.dispatch('add_task', this.task).then(
+                    () => { this.task = '';}
+                );
             }
-            this.task = '';
         },
-        deleteTask(index:number) {
-            this.tasks.splice(index, 1);
+        deleteTask(task: string) {
+            store.dispatch('delete_task', task);
+        }
+    },
+    computed: {
+        tasks() {
+            return store.getters.getTasks;
         },
     }
 });
