@@ -7,6 +7,7 @@
                     <ul class="sidebar-list">
                         <li><router-link to="/">Exercice Nº1</router-link></li>
                         <li><router-link to="/about">Exercice Nº2</router-link></li>
+                        <li><router-link to="/github-user-search">Exercice Nº3</router-link></li>
                     </ul>
                 </div>
         </transition>

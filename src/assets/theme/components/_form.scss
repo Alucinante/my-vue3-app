@@ -27,3 +27,13 @@
         background:#C21515;
     }
 }
+.g-result {
+    display: flex;
+    & > div {
+        margin-right: 2rem;
+        img {
+            max-width: 200px;
+            border-radius: 100px;
+        }
+    }
+}

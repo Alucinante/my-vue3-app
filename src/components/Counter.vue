@@ -19,11 +19,6 @@ export default defineComponent({
   props: {
     msg: String,
   },
-  computed: {
-    count () {
-      return store.state.count
-    }
-  },
   methods: {
     increment () {
       store.commit('increment');
@@ -31,6 +26,11 @@ export default defineComponent({
     },
     decrement () {
       store.commit('decrement')
+    }
+  },
+  computed: {
+    count () {
+      return store.getters.counter
     }
   }
 });
