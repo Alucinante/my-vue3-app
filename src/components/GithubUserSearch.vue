@@ -6,25 +6,25 @@
         </div>
 
         
-        <div v-if="getUsername.id">
+        <div v-if="getUser.id">
             <h2>Result:</h2>
             <div class="g-result">
-                <div><img :src="getUsername.avatar_url" :alt="'GitHub Avatar for ' + getUsername.name " /></div>
+                <div><img :src="getUser.avatar_url" :alt="'GitHub Avatar for ' + getUser.name " /></div>
                 <div>
-                    <p><strong>Id:</strong> {{ getUsername.id }}</p>
-                    <p><strong>Username:</strong> {{ getUsername.name }}</p>
+                    <p><strong>Id:</strong> {{ getUser.id }}</p>
+                    <p><strong>Username:</strong> {{ getUser.name }}</p>
+                    <p><strong>Status: {{ isUserActive }} </strong> </p>
                 </div>
             </div>
         </div>
         <div v-if="getError">
-           <p>Error</p>
+           <p>User doesn't exist.</p>
         </div>
     </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import store from '../store'
-
+import store from '../store';
 
 export default defineComponent({
     name: 'GithubUserSearch',
@@ -36,18 +36,21 @@ export default defineComponent({
     methods: {
         searchUsername() {
             if (this.username.trim() != '') { 
-                store.dispatch('get_username', this.username).then(
+                store.dispatch('get_user', this.username).then(
                     () => { this.username = '';}
                 );
             }
         },
     },
     computed: {
-        getUsername() {
-            return store.getters.getUsername;
+        getUser() {
+            return store.getters.getUser;
         },
         getError() {
             return store.getters.getError;
+        },
+        isUserActive() {
+            return store.getters.isUserActive;
         }
     }
 });
