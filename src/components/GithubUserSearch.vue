@@ -13,7 +13,7 @@
                 <div>
                     <p><strong>Id:</strong> {{ getUser.id }}</p>
                     <p><strong>Username:</strong> {{ getUser.name }}</p>
-                    <p><strong>Status: {{ isUserActive }} </strong> </p>
+                    <p><strong>Status:</strong> <span v-if="isUserActive">User is ACTIVE</span><span v-else> User is inactive INACTIVE</span></p>
                 </div>
             </div>
         </div>

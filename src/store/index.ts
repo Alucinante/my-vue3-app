@@ -32,9 +32,9 @@ export default createStore({
       console.log("Last" + lastActivityDate);
 
       if (lastActivityDate > lastSixMonths) {
-        return 'User is active'
+        return true
       }
-      return 'User is inactive'
+      return false
     },
   },
   mutations: {
