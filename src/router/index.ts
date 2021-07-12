@@ -20,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'GithubUserSearch',
     component: () => import( '../views/Exercice3.vue')
   },
+  {
+    path: '/crypto-tokens',
+    name: 'CryptoTokens',
+    component: () => import( '../views/Exercice4.vue')
+  },
 ]
 
 const router = createRouter({

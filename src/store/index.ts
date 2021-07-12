@@ -7,19 +7,29 @@ export default createStore({
     count: 0,
     //tasks: [],
     tasks: new Array<any>(),
+    cryptoList: new Array<any>(),
     user: {
       "login": '',
       "id": 0,
       "avatar_url": '',
       "updated_at": '',
     },
+    crypto: {
+      "id": '',
+      "name": '',
+      "market_data": '',
+      "current_price": '',
+      "usd": '',
+    },
     error: false,
   },
   getters: {
     counter: state => state.count,
     getTasks: state => state.tasks,
+    getList: state => state.cryptoList,
     getUser: state => state.user,
     getError: state => state.error,
+    getCrypto: state => state.crypto,
     isUserActive: function(state) {
       const now = DateTime.now();
       const userDate = state.user.updated_at;
@@ -47,6 +57,9 @@ export default createStore({
     add_task(state, task) {
       state.tasks.push(task);
     },
+    add_crypto(state, cryptoname) {
+      state.cryptoList.push(cryptoname);
+    },
     delete_task(state, task) {
       const index = state.tasks.indexOf(task);
       state.tasks.splice(index, 1);
@@ -56,6 +69,9 @@ export default createStore({
     },
     set_error(state, error) {
       state.error = error
+    },
+    set_crypto(state, crypto) {
+      state.crypto = crypto
     },
   },
   actions: {
@@ -74,6 +90,19 @@ export default createStore({
         .catch(error => {
           commit('set_error', true);
           commit('set_user', {});
+        })
+    },
+    add_crypto({commit}, cryptoname ) { 
+      axios.get(`https://api.coingecko.com/api/v3/coins/${cryptoname}`)
+        .then(response => {
+          console.log(response.data)
+          commit('set_crypto', response.data);
+          commit('add_crypto', cryptoname);
+          commit('set_error', false)
+        })
+        .catch(error => {
+          commit('set_error', true);
+          commit('set_crypto', {});
         })
     },
   }

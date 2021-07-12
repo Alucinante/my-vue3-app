@@ -4,7 +4,7 @@
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/about">Exercice 2</router-link></li>
             <li><router-link to="/github-user-search">Exercice 3</router-link></li>
-            <li><router-link to="/menu4">Menu 4</router-link></li>
+            <li><router-link to="/crypto-tokens">Exercice 4</router-link></li>
         </ul>
     </nav>
 </template>
