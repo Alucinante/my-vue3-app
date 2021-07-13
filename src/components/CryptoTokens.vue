@@ -9,13 +9,12 @@
 
         <div v-if="getCrypto.id">
             <h2>Crypto list</h2>
-            
             <ul class="list">
                 <li
-                    v-for="(cryptoname, index) in cryptoList"
+                    v-for="(item, index) in cryptoList"
                     :key="index"
                 >
-                    {{ getCrypto.name }}
+                    {{ item.name }}
                 </li>
             </ul>
             <div class="panel">

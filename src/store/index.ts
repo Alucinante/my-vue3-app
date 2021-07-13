@@ -57,9 +57,6 @@ export default createStore({
     add_task(state, task) {
       state.tasks.push(task);
     },
-    add_crypto(state, cryptoname) {
-      state.cryptoList.push(cryptoname);
-    },
     delete_task(state, task) {
       const index = state.tasks.indexOf(task);
       state.tasks.splice(index, 1);
@@ -72,6 +69,9 @@ export default createStore({
     },
     set_crypto(state, crypto) {
       state.crypto = crypto
+    },
+    add_crypto(state, crypto_id) {
+      state.cryptoList.push(crypto_id);
     },
   },
   actions: {
@@ -92,18 +92,20 @@ export default createStore({
           commit('set_user', {});
         })
     },
-    add_crypto({commit}, cryptoname ) { 
-      axios.get(`https://api.coingecko.com/api/v3/coins/${cryptoname}`)
+    get_crypto({commit}, crypto_id ) { 
+      axios.get(`https://api.coingecko.com/api/v3/coins/${crypto_id}`)
         .then(response => {
           console.log(response.data)
           commit('set_crypto', response.data);
-          commit('add_crypto', cryptoname);
           commit('set_error', false)
         })
         .catch(error => {
           commit('set_error', true);
           commit('set_crypto', {});
         })
+    },
+    add_crypto(context, crypto_id) {
+      context.commit("add_crypto", crypto_id);
     },
   }
 })
