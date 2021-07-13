@@ -9,11 +9,20 @@ declare module '@vue/runtime-core' {
         "avatar_url": string,
         "updated_at": string,
     }
+    interface Crypto {
+        "id": string,
+        "name": string,
+        "market_data": string,
+        "current_price": string,
+        "usd": string,
+    }
     interface State {
       count: number,
       tasks: string[],
+      cryptoList: string[],
       user: User,
       error: boolean,
+      cryptos: Crypto,
     }
   
     // provide typings for `this.$store`

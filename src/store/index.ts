@@ -7,19 +7,29 @@ export default createStore({
     count: 0,
     //tasks: [],
     tasks: new Array<any>(),
+    cryptoList: new Array<any>(),
     user: {
       "login": '',
       "id": 0,
       "avatar_url": '',
       "updated_at": '',
     },
+    crypto: {
+      "id": '',
+      "name": '',
+      "market_data": '',
+      "current_price": '',
+      "usd": '',
+    },
     error: false,
   },
   getters: {
     counter: state => state.count,
     getTasks: state => state.tasks,
+    getList: state => state.cryptoList,
     getUser: state => state.user,
     getError: state => state.error,
+    getCrypto: state => state.crypto,
     isUserActive: function(state) {
       const now = DateTime.now();
       const userDate = state.user.updated_at;
@@ -57,6 +67,12 @@ export default createStore({
     set_error(state, error) {
       state.error = error
     },
+    set_crypto(state, crypto) {
+      state.crypto = crypto
+    },
+    add_crypto(state, crypto_id) {
+      state.cryptoList.push(crypto_id);
+    },
   },
   actions: {
     add_task(context, task) {
@@ -75,6 +91,21 @@ export default createStore({
           commit('set_error', true);
           commit('set_user', {});
         })
+    },
+    get_crypto({commit}, crypto_id ) { 
+      axios.get(`https://api.coingecko.com/api/v3/coins/${crypto_id}`)
+        .then(response => {
+          console.log(response.data)
+          commit('set_crypto', response.data);
+          commit('set_error', false)
+        })
+        .catch(error => {
+          commit('set_error', true);
+          commit('set_crypto', {});
+        })
+    },
+    add_crypto(context, crypto_id) {
+      context.commit("add_crypto", crypto_id);
     },
   }
 })
